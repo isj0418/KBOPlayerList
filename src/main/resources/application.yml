@@ -1,0 +1,23 @@
+# 서버 포트 설정
+server:
+  port: 8080 # port 충돌 방지
+
+# database 연동 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/lee?serverTimezone=Asia/Seoul&characterEncoding=UTF-8 # my database name : lee
+    username: root
+    password: 1234
+  thymeleaf:
+    cache: false
+
+  # spring data jpa 설정
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect # mysql version 8.0.34
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      # 초기에 생성 전에는 create 로 시작, 첫 실행 이후 update 로 바꿔야 함
+      # create 로 계속 냅두면 데이터가 다 사라질 수 있음
