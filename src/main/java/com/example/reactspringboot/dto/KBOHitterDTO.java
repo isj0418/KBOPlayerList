@@ -22,6 +22,7 @@ public class KBOHitterDTO {
     private String player_2B;
     private String player_3B;
     private String player_HR;
+    private String player_Image_Url;
 
     // Entity -> DTO
     public static KBOHitterDTO toKBOHitterDTO(KBOHitterEntity kboHitterEntity){
@@ -38,6 +39,7 @@ public class KBOHitterDTO {
         kboHitterDTO.setPlayer_2B(kboHitterEntity.getPlayer_2B());
         kboHitterDTO.setPlayer_3B(kboHitterEntity.getPlayer_3B());
         kboHitterDTO.setPlayer_HR(kboHitterEntity.getPlayer_HR());
+        kboHitterDTO.setPlayer_Image_Url(kboHitterEntity.getPlayer_Image_Url());
         return kboHitterDTO;
     }
 }

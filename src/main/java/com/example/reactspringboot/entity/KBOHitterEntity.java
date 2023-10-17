@@ -38,4 +38,6 @@ public class KBOHitterEntity {
     private String player_3B;
     @Column(name = "player_hr")
     private String player_HR;
+    @Column(name = "player_image_url")
+    private String player_Image_Url;
 }

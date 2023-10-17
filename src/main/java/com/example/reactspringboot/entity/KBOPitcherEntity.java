@@ -36,6 +36,8 @@ public class KBOPitcherEntity {
     private String player_HLD;
     @Column(name = "player_wpct")
     private String player_WPCT;
+    @Column(name = "player_image_url")
+    private String player_Image_Url;
 
 
 }

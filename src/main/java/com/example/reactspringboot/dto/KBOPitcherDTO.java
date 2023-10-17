@@ -20,6 +20,7 @@ public class KBOPitcherDTO {
     private String player_Save;
     private String player_HLD;
     private String player_WPCT;
+    private String player_Image_Url;
 
     // Entity -> DTO
     public static KBOPitcherDTO toKBOPitcherDTO(KBOPitcherEntity kboPitcherEntity){
@@ -35,6 +36,7 @@ public class KBOPitcherDTO {
         kboPitcherDTO.setPlayer_Save(kboPitcherEntity.getPlayer_Save());
         kboPitcherDTO.setPlayer_HLD(kboPitcherEntity.getPlayer_HLD());
         kboPitcherDTO.setPlayer_WPCT(kboPitcherEntity.getPlayer_WPCT());
+        kboPitcherDTO.setPlayer_Image_Url(kboPitcherEntity.getPlayer_Image_Url());
         return kboPitcherDTO;
     }
 
