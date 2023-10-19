@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.example.reactspringboot.dto.KBOPlayerDTO;
 import com.example.reactspringboot.service.KBOPlayerService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -18,19 +16,10 @@ import java.util.List;
 public class KBOPlayerController {
     private final KBOPlayerService kboPlayerService;
     @GetMapping("/playerList")
-    public Page<KBOPlayerDTO> findAll(
-            @RequestParam(required = false) String team,
-            @RequestParam(required = false) String position,
-            Pageable pageable
-    ){
-        System.out.println(team);
-        System.out.println(position);
-        System.out.println(pageable);
-        System.out.println(kboPlayerService.findPlayers(team, position, pageable));
-
-        return kboPlayerService.findPlayers(team, position, pageable);
+    public List<KBOPlayerDTO> findAll(){
+        //System.out.println(kboPlayerService.findAllPlayers());
+        return kboPlayerService.findAllPlayers();
     }
-
 
     @GetMapping("/pitcherDetail/{playerId}")
     public KBOPitcherDTO findPitcher(@PathVariable Long playerId){

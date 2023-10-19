@@ -27,37 +27,14 @@ public class KBOPlayerService {
     private final KBOPitcherRepository kboPitcherRepository;
     private final KBOHitterRepository kboHitterRepository;
 
-    public Page<KBOPlayerDTO> findPlayers(String team, String position, Pageable pageable) {
-        Page<KBOPlayerEntity> kboPlayerEntityPage;
-        Long totalItemCount;
-
-        // 페이지 번호를 1 감소하여 조정
-        int adjustedPageNumber = pageable.getPageNumber() - 1;
-        Pageable adjustedPageable = PageRequest.of(adjustedPageNumber, pageable.getPageSize());
-
-        if (team != null && !team.isEmpty() && position != null && !position.isEmpty()) {
-            kboPlayerEntityPage = kboPlayerRepository.findAllByPlayerTeamAndPlayerPosition(team, position, adjustedPageable);
-            totalItemCount = kboPlayerRepository.countByPlayerTeamAndPlayerPosition(team, position);
-        } else if (team != null && !team.isEmpty()) {
-            kboPlayerEntityPage = kboPlayerRepository.findAllByPlayerTeam(team, adjustedPageable);
-            totalItemCount = kboPlayerRepository.countByPlayerTeam(team);
-        } else if (position != null && !position.isEmpty()) {
-            kboPlayerEntityPage = kboPlayerRepository.findAllByPlayerPosition(position, adjustedPageable);
-            totalItemCount = kboPlayerRepository.countByPlayerPosition(position);
-        } else {
-            // Handle the case where both team and position are not selected
-            kboPlayerEntityPage = kboPlayerRepository.findAll(adjustedPageable);
-            totalItemCount = kboPlayerRepository.count();
-        }
-
+    public List<KBOPlayerDTO> findAllPlayers() {
+        List<KBOPlayerEntity> kboPlayerEntities = kboPlayerRepository.findAll();
         List<KBOPlayerDTO> kboPlayerDTOList = new ArrayList<>();
-        for (KBOPlayerEntity kboPlayerEntity : kboPlayerEntityPage) {
+        for (KBOPlayerEntity kboPlayerEntity : kboPlayerEntities) {
             kboPlayerDTOList.add(KBOPlayerDTO.toKBOPlayerDTO(kboPlayerEntity));
         }
-
-        return new PageImpl<>(kboPlayerDTOList, pageable, totalItemCount);
+        return kboPlayerDTOList;
     }
-
 
     public KBOPitcherDTO findPitcher(Long playerId) {
         Optional<KBOPitcherEntity> kboPitcherEntity = kboPitcherRepository.findById(playerId);
